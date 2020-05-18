@@ -1,0 +1,8 @@
+/ip firewall filter
+add action=accept chain=forward connection-state=established,related
+add action=drop chain=forward connection-state=invalid
+add action=accept chain=input comment="INPUT WINBOX" connection-state=established,related dst-port=8291 protocol=tcp
+add action=accept chain=input comment="INPUT OPENVPN SERVER" dst-port=1443 protocol=tcp
+add action=drop chain=input connection-state=invalid
+add action=accept chain=output connection-state=established,related
+add action=drop chain=output connection-state=invalid
